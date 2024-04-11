@@ -8,6 +8,7 @@ import Button from "../components/Button";
 import ButtonDemo from "@/components/ButtonDemo";
 import ColorPicker from "../components/ColorPicker";
 import PeoplePicker from "@/components/PeoplePickers";
+import Tabs from "@/components/Tabs";
 import { getPeople, getWeatherData, getGeoLocation, getWeatherDataByLatLon} from "../lib/api"
 
 
@@ -20,6 +21,7 @@ const Homepage = () => {
 
   const peopleArr = getPeople();
 
+   //useEffect as function that will run when something happen **after something happen
   useEffect(()=>{
     getGeoLocation()
     .then((position) => {
@@ -90,11 +92,10 @@ const Homepage = () => {
   <ColorPicker />*/}
   {daysOfWeek && (
   <section>
-      <ul>
-      {daysOfWeek?.map((day, index) => {
-        return <li key={index}>{day}</li>;
-      })}
-      </ul>
+      <Tabs 
+      activeIndex={activeDayIndex}
+      items={daysOfWeek} 
+      clickHandler={setActiveDayIndex}/>
       <div>
         {weatherData?.list
         .filter((block) => {
