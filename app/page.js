@@ -49,7 +49,7 @@ const Homepage = () => {
           const options = { weekday: "short"}; //hold structure set
           const day = date.toLocaleDateString("en-US", options); //localize date format 
          // console.log(day);
-         if (!tempWeek.includes()) {// ! mean if you do not have date inside we
+         if (!tempWeek.includes(day)) {// ! mean if you do not have date inside we
             tempWeek.push(day);
          }
       });
@@ -99,7 +99,7 @@ const Homepage = () => {
         {weatherData?.list
         .filter((block) => {
         const date = new Date(block.dt * 1000);
-        const options = { weekdat: "short"};
+        const options = { weekday: "short"};
         const day = date.toLocaleDateString("en-US", options);
         return day === daysOfWeek[activeDayIndex];
       })
