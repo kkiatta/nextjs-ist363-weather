@@ -1,4 +1,5 @@
 "use client"
+//content of the website
 
 import { useEffect, useState } from "react";
 
@@ -8,9 +9,10 @@ import Button from "../components/Button";
 import ButtonDemo from "@/components/ButtonDemo";
 import ColorPicker from "../components/ColorPicker";
 import PeoplePicker from "@/components/PeoplePickers";
+
+import List from "../components/List"
 import Tabs from "@/components/Tabs";
 import { getPeople, getWeatherData, getGeoLocation, getWeatherDataByLatLon} from "../lib/api"
-
 
 const Homepage = () => {
   const [weatherData, setWeatherData] = useState (null);
@@ -90,24 +92,17 @@ const Homepage = () => {
       {/*<PeoplePicker people={peopleArr}/>
       <ButtonDemo />
   <ColorPicker />*/}
-  {daysOfWeek && (
+  {weatherData && daysOfWeek && (
   <section>
-      <Tabs 
-      activeIndex={activeDayIndex}
-      items={daysOfWeek} 
-      clickHandler={setActiveDayIndex}/>
-      <div>
-        {weatherData?.list
-        .filter((block) => {
-        const date = new Date(block.dt * 1000);
-        const options = { weekday: "short"};
-        const day = date.toLocaleDateString("en-US", options);
-        return day === daysOfWeek[activeDayIndex];
-      })
-      .map((block,index) => {
-        return <p key={index}>{block.main.temp}</p>;
-      })}
-      </div>
+       <Tabs 
+        activeIndex={activeDayIndex}
+        items={daysOfWeek} 
+        clickHandler={setActiveDayIndex}/>
+      <List
+       activeIndex={activeDayIndex}
+       items={weatherData.list}
+       daysOfWeek={daysOfWeek}
+      />
   </section>
     )}
   </div>
