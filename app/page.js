@@ -10,8 +10,12 @@ import ButtonDemo from "@/components/ButtonDemo";
 import ColorPicker from "../components/ColorPicker";
 import PeoplePicker from "@/components/PeoplePickers";
 
-import List from "../components/List"
+import Col from "../components/Col"
+import Container from "../components/Container";
+import List from "../components/List";
+import Row from "../components/Row";
 import Tabs from "@/components/Tabs";
+
 import { getPeople, getWeatherData, getGeoLocation, getWeatherDataByLatLon} from "../lib/api"
 
 const Homepage = () => {
@@ -77,7 +81,9 @@ const Homepage = () => {
     <h1>Weather app</h1>
     {errorMsg && <div>{errorMsg}</div>}
       {weatherData && (
-        <div>
+        <Container>
+        <Row>
+            <Col>
          <h2>{weatherData.city.name}</h2>
          <p>Current temp: {weatherData.list[0].main.temp}&deg; C</p>
          <p>{weatherData.list[0].weather[0].description}</p>
@@ -87,11 +93,11 @@ const Homepage = () => {
           width={100}
           height={100}
          />
-         </div>
+         </Col>
+         <Col>Tabs and List goes here.</Col>
+         </Row>
+         </Container>
          )}
-      {/*<PeoplePicker people={peopleArr}/>
-      <ButtonDemo />
-  <ColorPicker />*/}
   {weatherData && daysOfWeek && (
   <section>
        <Tabs 
