@@ -1,4 +1,5 @@
 import Container from"../components/Container.js";
+import Logo from "./Logo"
 import Row from "./Row.js"
 
 import styles from './Header.module.scss';
@@ -6,13 +7,8 @@ import styles from './Header.module.scss';
 const Header = () => {
     return <header className={styles.header}>
         <Container>
-            <Row justifyContent="center" alignItems="center">
-            <p>Logo</p>
-            <p>Nav</p>
-            <p>Nav</p>
-            <p>Nav</p>
-            <p>Nav</p>
-            <p>Nav</p>
+            <Row>
+            <Logo/>
             </Row>
             </Container>
         </header>
