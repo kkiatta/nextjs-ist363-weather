@@ -74,14 +74,28 @@
     }
   }
 
-  // @mixin generateFontSizeClasses() {
-  //   $sizes: xs, sm, md, lg, xl;
+  @mixin generateFontSizeClasses($rootFontSize) {
+    $multipliers: (
+      xs: 0.75,
+      sm: 0.9,
+      md: 1,
+      lg: 1.5,
+      xl: 3,
+    );
+    @each $size, $multipliers in $multipliers{
+      &.font_size--#{$size}{
+        font-size: calc($rootFontSize * $multipliers);
+      }
+    }
+    }
+    @mixin generatePaddingClasses() {
+      $side: top, right, bottom, left;
 
-  //   @each $size in $sizes{
-  //     @include breakpoint(#{$size}) {
-  //         &.fond_size__#{$size} {
-  //           width: calc($i/12 * 100%);
-  //         }
-  //       }
-  //     }
-  //   }
+      @each $side in $side {
+        @for $i from 1 through 6 {
+          &.padding-#{side}-#{$i} {
+            padding-#{$side}: #{$i}rem;
+          }
+        }
+      }
+    }

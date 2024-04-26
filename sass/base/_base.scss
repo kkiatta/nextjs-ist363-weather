@@ -1,3 +1,5 @@
+@use "../abstracts/vars";
+
 h1 ,h2, h3 ,h4, h5, h6, p, ul, li{
     margin: 0;
     padding: 0;
@@ -18,5 +20,5 @@ img{
 
 body{
     background-color: lightblue;
-    font-family: Arial;
+    font-family: vars.$font__primary;
 }

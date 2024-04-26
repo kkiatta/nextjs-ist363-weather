@@ -14,6 +14,7 @@ import Col from "../components/Col"
 import Container from "../components/Container";
 import List from "../components/List";
 import Row from "../components/Row";
+import Section from "../components/Section";
 import Tabs from "@/components/Tabs";
 import Temp from "@/components/Temp";
 
@@ -26,6 +27,7 @@ const Homepage = () => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [daysOfWeek, setDaysofWeek] = useState(null);
   const [activeDayIndex, setActiveDayIndex] = useState(0)
+  const [tempUnit, setTempUnit] = useState("metric");
 
   const peopleArr = getPeople();
 
@@ -80,7 +82,7 @@ const Homepage = () => {
   
   //console.log({peopleArr}); 
   return (
-  <div>
+  <Section>
     {errorMsg && <div>{errorMsg}</div>}
       {loading ? (
         <Container>
@@ -91,7 +93,7 @@ const Homepage = () => {
         <Row>
             <Col sm={3} md={4}>
          <h2>{weatherData.city.name}</h2>
-         <Temp size= "xl" amount={weatherData.list[0].main.temp}/>
+         <Temp size= "xl" amount={weatherData.list[0].main.temp} unit={tempUnit}/>
          <p>{weatherData.list[0].weather[0].description}</p>
          <Image 
           src={`https://openweathermap.org/img/wn/${weatherData.list[0].weather[0].icon}@2x.png`}
@@ -99,6 +101,13 @@ const Homepage = () => {
           width={100}
           height={100}
          />
+         <br/>
+         <Button 
+          label= {`Change to ${tempUnit === "metric" ? "fahrenheit" : "celsius" 
+        }`}
+         clickHandler={() => {
+          setTempUnit(tempUnit === "metric" ? "imperial" : "metric" );
+         }}/>
          </Col>
          <Col sm={9} md={8}>
          {weatherData && daysOfWeek && (
@@ -111,6 +120,7 @@ const Homepage = () => {
                   activeIndex={activeDayIndex}
                   items={weatherData.list}
                   daysOfWeek={daysOfWeek}
+                  unit={tempUnit}
                   />
               </section>
                 )}
@@ -118,7 +128,7 @@ const Homepage = () => {
          </Row>
          </Container>
          )}
-  </div>
+  </Section>
   );
 };
 export default Homepage;

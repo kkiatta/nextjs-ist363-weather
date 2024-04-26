@@ -4,12 +4,14 @@ import styles from "./Temp.module.scss"
 
 const cx = classnames.bind(styles)
 
-const Temp = ({amount, size}) => {
+const Temp = ({amount, size, unit }) => {
         const tempClasses = cx({
             temp: true,
             [`size--${size}`] : size
-        })
-    const roundedTemp = Math.round(amount);
-    return <span className={tempClasses}>{roundedTemp} &deg; C</span>;
+        });
+    const formattedTemp = unit === "imperial" ? (amount*9/5) + (32) : amount;
+    const roundedTemp = Math.round(formattedTemp);
+    const tempSymbol = unit === "imperial" ? "F" : "C";
+    return <span className={tempClasses}>{roundedTemp}&deg; {tempSymbol}</span>;
 };
 export default Temp;
