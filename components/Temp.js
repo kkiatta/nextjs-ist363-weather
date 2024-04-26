@@ -12,6 +12,11 @@ const Temp = ({amount, size, unit }) => {
     const formattedTemp = unit === "imperial" ? (amount*9/5) + (32) : amount;
     const roundedTemp = Math.round(formattedTemp);
     const tempSymbol = unit === "imperial" ? "F" : "C";
-    return <span className={tempClasses}>{roundedTemp}&deg; {tempSymbol}</span>;
-};
+    return (
+        <>
+          <span className={tempClasses}>{roundedTemp}&deg;{tempSymbol}</span>
+        </>
+      );
+    };
+
 export default Temp;

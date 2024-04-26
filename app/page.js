@@ -10,6 +10,7 @@ import ButtonDemo from "@/components/ButtonDemo";
 import ColorPicker from "../components/ColorPicker";
 import PeoplePicker from "@/components/PeoplePickers";
 
+import AttireRecommendation from "@/components/recommendAttire";
 import Col from "../components/Col"
 import Container from "../components/Container";
 import List from "../components/List";
@@ -101,6 +102,8 @@ const Homepage = () => {
           width={100}
           height={100}
          />
+         <AttireRecommendation temperature={weatherData.list[0].main.temp} unit={tempUnit}/>
+
          <br/>
          <Button 
           label= {`Change to ${tempUnit === "metric" ? "fahrenheit" : "celsius" 
